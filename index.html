@@ -85,8 +85,8 @@
           .attr("d", path);
     });
     d3.select(self.frameElement).style("height", height + "px");
+    // rotate the map according to time
     function updateClock() {
-      // rotate the map according to time
       let now = new Date()
       // UTC minutes elapsed in the day out of 1440
       let minutes = (now.getUTCHours() * 60) + now.getUTCMinutes()
@@ -96,8 +96,11 @@
     }
     updateClock()
     d3.interval(updateClock, 1000)
+    // reload on page resize (probably not most efficient way)
+    window.addEventListener('resize', (e) => {
+      setTimeout(() => {location.reload()}, 100)
+    })
     // TODO essential: stationary clock hour numbers : NOTE reversed like the time zones
-    // TODO usability: reload svg on page resize?
     // TODO feature: timezone lines including daylight savings offsets (zigzag lines)
     // TODO reach feature: show location of yourself + friends on the map
   </script>
