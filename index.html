@@ -90,9 +90,8 @@
       let now = new Date()
       // UTC minutes elapsed in the day out of 1440
       let minutes = (now.getUTCHours() * 60) + now.getUTCMinutes()
-      // 24 hour clock, 24=0 at the top
       let percentage = minutes / 1440
-      console.log(percentage)
+      // 24 hour clock, 24=0 at the top (-0.5 rotates, normally at bottom)
       svg.style('transform', `rotate(${percentage - 0.5}turn)`)
     }
     updateClock()
