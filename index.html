@@ -82,6 +82,8 @@
           .attr("d", path);
     });
     d3.select(self.frameElement).style("height", height + "px");
+    // rotate map
+    svg.style('transform', `rotate(${90}deg)`)
   </script>
 </body>
 </html>
