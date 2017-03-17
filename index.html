@@ -42,7 +42,7 @@
     let height = window.innerHeight
     let smallestWidthHeight = (width <= height) ? width : height
     var projection = d3.geo.azimuthalEquidistant()
-        .scale(150)
+        .scale(smallestWidthHeight / 7)
         .rotate([0, -90])
         .center([0, 0])
         .translate([width / 2, height / 2])
