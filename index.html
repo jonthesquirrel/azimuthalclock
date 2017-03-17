@@ -40,6 +40,7 @@
 <body>
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script src="https://d3js.org/d3-timer.v1.min.js"></script>
   <script>
     let width = window.innerWidth - 4
     let height = window.innerHeight - 4
@@ -86,16 +87,19 @@
     function updateClock() {
       // rotate the map according to time
       let d = new Date()
+      // TODO needs to be UTC not local
       // minutes elapsed in the day out of 1440
       let minutes = (d.getHours() * 60) + d.getMinutes()
       // 24 hour clock, 24=0 at the bottom(?)
-      // TODO not accurate
-      svg.style('transform', `rotate(${ (minutes / 1440) }turn)`)
+      let percentage = minutes / 1440
+      console.log(percentage)
+      svg.style('transform', `rotate(${percentage - 0.5}turn)`)
     }
     updateClock()
-    setInterval(updateClock, 1000)
+    d3.interval(updateClock, 1000)
     // TODO stationary clock hour numbers
     // TODO timezone lines including daylight savings offsets (zigzag lines)
+    // TODO reload svg on page resize?
   </script>
 </body>
 </html>
