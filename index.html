@@ -11,6 +11,7 @@
       background: #fcfcfa;
       margin: 0;
       padding: 0;
+      overflow: hidden;
     }
     .stroke {
       fill: none;
@@ -55,7 +56,7 @@
     var graticule = d3.geo.graticule();
     var svg = d3.select("body").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
     svg.append("defs").append("path")
         .datum({type: "Sphere"})
         .attr("id", "sphere")
@@ -88,12 +89,13 @@
       // minutes elapsed in the day out of 1440
       let minutes = (d.getHours() * 60) + d.getMinutes()
       // 24 hour clock, 24=0 at the bottom(?)
+      // TODO not accurate
       svg.style('transform', `rotate(${ (minutes / 1440) }turn)`)
     }
     updateClock()
     // setInterval(updateClock, 1000)
     // TODO stationary clock hour numbers
-    // TODO timezone lines
+    // TODO timezone lines including daylight savings offsets (zigzag lines)
   </script>
 </body>
 </html>
