@@ -38,8 +38,9 @@
   <script src="//d3js.org/d3.v3.min.js"></script>
   <script src="//d3js.org/topojson.v1.min.js"></script>
   <script>
-    var width = 960,
-        height = 960;
+    let width = window.innerWidth
+    let height = window.innerHeight
+    let smallestWidthHeight = (width <= height) ? width : height
     var projection = d3.geo.azimuthalEquidistant()
         .scale(150)
         .rotate([0, -90])
