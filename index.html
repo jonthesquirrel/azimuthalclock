@@ -89,7 +89,7 @@
           .attr("d", path);
     });
     d3.select(self.frameElement).style("height", height + "px");
-    // rotate the map according to time
+    // rotate the map according to time (changes every minute, checks every sec)
     function updateClock() {
       let now = new Date()
       // UTC minutes elapsed in the day out of 1440
