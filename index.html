@@ -89,14 +89,18 @@
           .attr("d", path);
     });
     d3.select(self.frameElement).style("height", height + "px");
+    // stationary hour numbers (counterclockwise like time zones)
+    // d3.?
     // rotate the map according to time (changes every minute, checks every sec)
     function updateClock() {
       let now = new Date()
       // UTC minutes elapsed in the day out of 1440
       let minutes = (now.getUTCHours() * 60) + now.getUTCMinutes()
       let percentage = minutes / 1440
-      // 24 hour clock, 24=0 at the top (-0.5 rotates, normally at bottom)
-      svg.style('transform', `rotate(${percentage - 0.5}turn)`)
+      // 24 hour clock, 0 at the top
+      // +0.5 moves reference point (UTC) from bottom to top
+      // -() turns motion counterclockwise
+      svg.style('transform', `rotate(${ -(percentage + 0.5) }turn)`)
     }
     updateClock()
     d3.interval(updateClock, 1000)
@@ -104,7 +108,6 @@
     window.addEventListener('resize', (e) => {
       setTimeout(() => {location.reload()}, 100)
     })
-    // TODO essential: stationary clock hour numbers : NOTE reversed like the time zones
     // TODO feature: timezone lines including daylight savings offsets (zigzag lines)
     // TODO reach feature: show location of yourself + friends on the map
   </script>
