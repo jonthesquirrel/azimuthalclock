@@ -86,11 +86,10 @@
     d3.select(self.frameElement).style("height", height + "px");
     function updateClock() {
       // rotate the map according to time
-      let d = new Date()
-      // TODO needs to be UTC not local
-      // minutes elapsed in the day out of 1440
-      let minutes = (d.getHours() * 60) + d.getMinutes()
-      // 24 hour clock, 24=0 at the bottom(?)
+      let now = new Date()
+      // UTC minutes elapsed in the day out of 1440
+      let minutes = (now.getUTCHours() * 60) + now.getUTCMinutes()
+      // 24 hour clock, 24=0 at the top
       let percentage = minutes / 1440
       console.log(percentage)
       svg.style('transform', `rotate(${percentage - 0.5}turn)`)
