@@ -9,6 +9,8 @@
   <style>
     body {
       background: #fcfcfa;
+      margin: 0;
+      padding: 0;
     }
     .stroke {
       fill: none;
@@ -38,8 +40,8 @@
   <script src="//d3js.org/d3.v3.min.js"></script>
   <script src="//d3js.org/topojson.v1.min.js"></script>
   <script>
-    let width = window.innerWidth
-    let height = window.innerHeight
+    let width = window.innerWidth - 4
+    let height = window.innerHeight - 4
     let smallestWidthHeight = (width <= height) ? width : height
     var projection = d3.geo.azimuthalEquidistant()
         .scale(smallestWidthHeight / 7)
